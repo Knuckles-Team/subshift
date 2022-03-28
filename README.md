@@ -1,11 +1,12 @@
 # Subshift
-*Version 0.1.4*
+*Version 0.1.5*
 
 A handy Python library to shift your subtitles +/- seconds so they align with your video
 
 ### Usage:
 | Short Flag | Long Flag | Description              |
 | --- | ------|--------------------------|
+| -h | --help | See Usage                |
 | -f | --file | Subtitle File            |
 | -m | --mode | + / -                    |
 | -t | --time | Time in seconds to shift |
