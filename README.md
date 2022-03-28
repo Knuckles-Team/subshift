@@ -1,4 +1,5 @@
 # Subshift
+*Version 0.1.3*
 
 A handy Python library to shift your subtitles +/- seconds so they align with your video
 
@@ -12,4 +13,15 @@ A handy Python library to shift your subtitles +/- seconds so they align with yo
 ### Example:
 ```bash
 python3 subshift.py --file English.srt --mode + --time 5
+```
+
+
+#### Build Instructions
+Build Python Package
+
+```bash
+sudo chmod +x ./*.py
+sudo pip install .
+python3 setup.py bdist_wheel --universal
+twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 ```
