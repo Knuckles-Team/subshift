@@ -10,12 +10,12 @@ import getopt
 
 
 def usage():
-    print(f"Usage: "
-          f"-f | --file [Subtitle File]"
-          f"-m | --mode [\"+\"/\"-\"]"
-          f"-t | --time [Time in seconds to shift]"
+    print(f"Usage: \n"
+          f"-f | --file [Subtitle File]\n"
+          f"-m | --mode [\"+\"/\"-\"]\n"
+          f"-t | --time [Time in seconds to shift\n"
           f"\n"
-          f"python3 subshift.py --file Engrish.srt --mode + --time 5")
+          f"python3 subshift.py --file Engrish.srt --mode + --time 5\n")
 
 
 def pad_time(time, seconds=False):

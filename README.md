@@ -23,5 +23,8 @@ Build Python Package
 sudo chmod +x ./*.py
 sudo pip install .
 python3 setup.py bdist_wheel --universal
+# Test Pypi
 twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+# Prod Pypi
+twine upload dist/*
 ```

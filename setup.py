@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(
     name='subshift',
-    version="0.1.3",
+    version="0.1.4",
     description='Synchronize your subtitle files by shifting the subtitle time (+/-)',
     url='https://github.com/Knucklessg1/subsync',
     author='Audel Rouhi',
