@@ -2,50 +2,27 @@
 # coding: utf-8
 
 from setuptools import setup
+from version import __version__, __author__, __credits__
+from pathlib import Path
+import re
 
 
-version = "0.1.7"
+readme = Path('README.md').read_text()
+version = __version__
+readme = re.sub(r"Version: [0-9]*\.[0-9]*\.[0-9][0-9]*", f"Version: {version}", readme)
+print(f"README: {readme}")
+with open("README.md", "w") as readme_file:
+    readme_file.write(readme)
 description = 'Synchronize your subtitle files by shifting the subtitle time (+/-)'
-long_description = f'''# Subshift
-*Version {version}*
-
-A handy Python library to shift your subtitles +/- seconds so they align with your video
-
-### Usage:
-| Short Flag | Long Flag | Description              |
-| --- | ------|--------------------------|
-| -h | --help | See Usage                |
-| -f | --file | Subtitle File            |
-| -m | --mode | + / -                    |
-| -t | --time | Time in seconds to shift |
-
-### Example:
-```bash
-python3 subshift.py --file English.srt --mode + --time 5
-```
-
-
-#### Build Instructions
-Build Python Package
-
-```bash
-sudo chmod +x ./*.py
-sudo pip install .
-python3 setup.py bdist_wheel --universal
-# Test Pypi
-twine upload --repository-url https://test.pypi.org/legacy/ dist/*
-# Prod Pypi
-twine upload dist/*
-```'''
 
 setup(
     name='subshift',
     version=f"{version}",
     description=description,
-    long_description=long_description,
+    long_description=f'{readme}',
     long_description_content_type='text/markdown',
     url='https://github.com/Knucklessg1/subsync',
-    author='Audel Rouhi',
+    author=__author__,
     author_email='knucklessg1@gmail.com',
     license='Unlicense',
     packages=[],
