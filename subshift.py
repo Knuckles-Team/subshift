@@ -105,11 +105,10 @@ def sync_time(subtitle_file, shift_time, shift_operator):
         file.writelines(lines)
 
 
-def main(argv):
+def subshift(argv):
     file = ""
     mode = "+"
     time = 5
-
     # Parse args
     try:
         opts, args = getopt.getopt(argv, "hf:m:t:", ["help", "file=", "mode=", "time="])
@@ -132,8 +131,15 @@ def main(argv):
     sync_time(subtitle_file=file, shift_time=time, shift_operator=mode)
 
 
+def main():
+    if len(sys.argv) < 2:
+        usage()
+        sys.exit(2)
+    subshift(sys.argv[1:])
+
+
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         usage()
         sys.exit(2)
-    main(sys.argv[1:])
+    subshift(sys.argv[1:])

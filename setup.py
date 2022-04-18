@@ -3,12 +3,11 @@
 
 from setuptools import setup
 
-setup(
-    name='subshift',
-    version="0.1.6",
-    description='Synchronize your subtitle files by shifting the subtitle time (+/-)',
-    long_description='''# Subshift
-*Version 0.1.5*
+
+version = "0.1.7"
+description = 'Synchronize your subtitle files by shifting the subtitle time (+/-)'
+long_description = f'''# Subshift
+*Version {version}*
 
 A handy Python library to shift your subtitles +/- seconds so they align with your video
 
@@ -37,7 +36,13 @@ python3 setup.py bdist_wheel --universal
 twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 # Prod Pypi
 twine upload dist/*
-```''',
+```'''
+
+setup(
+    name='subshift',
+    version=f"{version}",
+    description=description,
+    long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/Knucklessg1/subsync',
     author='Audel Rouhi',
@@ -45,7 +50,7 @@ twine upload dist/*
     license='Unlicense',
     packages=[],
     install_requires=['chardet'],
-    scripts=['subshift.py', 'subshift', 'dist/subshift/*'],
+    py_modules=['subshift'],
     package_data={'subshift': ['subshift']},
     classifiers=[
         'Development Status :: 5 - Production/Stable',
@@ -55,4 +60,5 @@ twine upload dist/*
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
     ],
+    entry_points={'console_scripts': ['subshift = subshift:main']},
 )

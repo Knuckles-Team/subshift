@@ -1,5 +1,5 @@
 # Subshift
-*Version 0.1.6*
+*Version 0.1.7*
 
 A handy Python library to shift your subtitles +/- seconds so they align with your video
 
@@ -23,7 +23,6 @@ Build Python Package
 ```bash
 sudo chmod +x ./*.py
 sudo pip install .
-docker run -v "$(pwd):/src/" cdrx/pyinstaller-windows
 python3 setup.py bdist_wheel --universal
 # Test Pypi
 twine upload --repository-url https://test.pypi.org/legacy/ dist/*
