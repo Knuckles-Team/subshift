@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # coding: utf-8
 
 import re
@@ -11,7 +11,7 @@ import getopt
 
 def usage():
     print(f"Usage: \n"
-    	  f"-h | --help [ See usage for script ]\n"
+          f"-h | --help [ See usage for script ]\n"
           f"-f | --file [ Subtitle File ]\n"
           f"-m | --mode [ \"+\"/\"-\" ]\n"
           f"-t | --time [ Time in seconds to shift ]\n"
@@ -98,7 +98,7 @@ def sync_time(subtitle_file, shift_time, shift_operator):
     for line_index in range(0, len(lines)):
         if re.match(r"[0-9][0-9]:[0-9][0-9]:[0-9][0-9],[0-9][0-9][0-9]", lines[line_index]):
             # Acquire new time fileline
-            lines[line_index] = str(shift_sub_time(lines[line_index], shift_time, shift_operator)+"\n")
+            lines[line_index] = str(shift_sub_time(lines[line_index], shift_time, shift_operator) + "\n")
 
     # Rewrite back to the same subtitle file and same encoding
     with codecs.open(subtitle_file, "w", encoding=encoding) as file:

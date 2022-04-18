@@ -45,7 +45,7 @@ twine upload dist/*
     license='Unlicense',
     packages=[],
     install_requires=['chardet'],
-    scripts=['subshift.py', 'subshift'],
+    scripts=['subshift.py', 'subshift', 'dist/subshift/*'],
     package_data={'subshift': ['subshift']},
     classifiers=[
         'Development Status :: 5 - Production/Stable',

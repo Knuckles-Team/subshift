@@ -1,11 +1,15 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # coding: utf-8
 
 import subshift
 import subprocess as sp
 import sys
+import os
 
-path = subshift.__file__
-args = sys.argv
-args.pop(0)
-sp.call([path] + args)
+if os.name == "nt":
+    binary_path = subshift.__file__
+    binary_path = f"{os.path.dirname(binary_path)}/subshift.exe"
+    sp.call([binary_path] + sys.argv[1:])
+elif os.name == "posix":
+    binary_path = subshift.__file__
+    sp.call([binary_path] + sys.argv[1:])
