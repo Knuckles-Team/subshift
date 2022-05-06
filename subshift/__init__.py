@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-from version import __version__, __author__, __credits__
+from subshift.version import __version__, __author__, __credits__
 """
 subsync
 

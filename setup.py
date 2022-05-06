@@ -2,7 +2,7 @@
 # coding: utf-8
 
 from setuptools import setup
-from version import __version__, __author__, __credits__
+from subshift.version import __version__, __author__
 from pathlib import Path
 import re
 
@@ -25,7 +25,8 @@ setup(
     author=__author__,
     author_email='knucklessg1@gmail.com',
     license='Unlicense',
-    packages=[],
+    packages=['subshift'],
+    include_package_data=True,
     install_requires=['chardet'],
     py_modules=['subshift'],
     package_data={'subshift': ['subshift']},
@@ -37,5 +38,5 @@ setup(
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
     ],
-    entry_points={'console_scripts': ['subshift = subshift:main']},
+    entry_points={'console_scripts': ['subshift = subshift.subshift:main']},
 )
