@@ -35,8 +35,8 @@ def shift_sub_time(time, shift_time=5, shift_operator="+"):
     start_time, end_time = time.split(" --> ")
     start_hours, start_minutes, start_seconds = start_time.split(":")
     end_hours, end_minutes, end_seconds = end_time.split(":")
-    start_seconds = re.sub(",", "..", start_seconds)
-    end_seconds = re.sub(",", "..", end_seconds)
+    start_seconds = re.sub(",", ".", start_seconds)
+    end_seconds = re.sub(",", ".", end_seconds)
 
     # Calculate total time in seconds
     start_time_seconds = round(((int(start_hours) * 3600) + (int(start_minutes) * 60) + float(start_seconds)), 3)
@@ -70,8 +70,8 @@ def shift_sub_time(time, shift_time=5, shift_operator="+"):
     end_seconds = pad_time(end_seconds, seconds=True)
 
     # Return the comma on seconds
-    start_seconds = re.sub("..", ",", start_seconds)
-    end_seconds = re.sub("..", ",", end_seconds)
+    start_seconds = re.sub("\.", ",", start_seconds)
+    end_seconds = re.sub("\.", ",", end_seconds)
 
     # Reconstruct time fileline
     time = f"{start_hours}:{start_minutes}:{start_seconds} --> {end_hours}:{end_minutes}:{end_seconds}"
