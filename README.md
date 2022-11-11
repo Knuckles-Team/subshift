@@ -16,6 +16,12 @@ A handy Python library to shift your subtitles +/- seconds so they align with yo
 python3 subshift.py --file English.srt --mode + --time 5
 ```
 
+#### Install Instructions
+Install Python Package
+
+```bash
+python -m pip install subshift
+```
 
 #### Build Instructions
 Build Python Package
