@@ -14,6 +14,8 @@ jobs:
     steps:
     - name: Build package
       run: |
+        echo Installing & Updating Dependencies
+        python -m pip install --upgrade pip twine
         echo Runninhg pipeline
         sudo chown runner:docker /var/run/docker.sock
         python setup.py bdist_wheel --universal
@@ -22,7 +24,5 @@ jobs:
         name: subshift
         path: build/subshift.tar.gz
     - name: Publish package
-      uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_API_TOKEN }}
+      run: |
+        twine upload dist/* --verbose -u "__token__" -p "${{ secrets.PYPI_API_TOKEN }}"
