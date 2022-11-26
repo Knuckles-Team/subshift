@@ -14,6 +14,7 @@ jobs:
     steps:
     - name: Build package
       run: |
+        cd ..
         echo "Runninhg pipeline"
         python setup.py bdist_wheel --universal
     - uses: actions/upload-artifact@v3
