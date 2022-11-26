@@ -22,7 +22,7 @@ jobs:
         python setup.py bdist_wheel --universal
     - uses: actions/upload-artifact@v3
       with:
-        name: subshift
+        # name: subshift
         path: dist/subshift*.whl
 #    - name: Publish package
 #      run: |
