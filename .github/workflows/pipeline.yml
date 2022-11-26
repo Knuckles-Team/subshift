@@ -14,9 +14,9 @@ jobs:
     steps:
     - name: Build package
       run: |
-        echo Installing & Updating Dependencies
+        echo "Installing & Updating Dependencies"
         python -m pip install --upgrade pip twine
-        echo Runninhg pipeline
+        echo "Runninhg pipeline"
         sudo chown runner:docker /var/run/docker.sock
         python setup.py bdist_wheel --universal
     - uses: actions/upload-artifact@v3
