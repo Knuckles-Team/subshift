@@ -24,7 +24,7 @@ jobs:
       env:
         VERSION: $(ls dist | grep -o '[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*')
       with:
-        name: subshift-$VERSION
+        name: subshift-${{ env.VERSION }}
         path: dist/subshift*.whl
 #    - name: Publish package
 #      run: |
