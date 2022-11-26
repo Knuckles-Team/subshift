@@ -26,6 +26,19 @@ jobs:
       with:
         name: ${{ github.event.repository.name }}-${{ env.VERSION }}
         path: dist/${{ github.event.repository.name }}*.whl
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ env.VERSION }}
+        release_name: Release v${{ env.VERSION }}
+        body: |
+          Changes in this Release
+          - ${{ github.ref }}
+        draft: false
+        prerelease: false
 #    - name: Publish package
 #      run: |
 #        twine upload dist/* --verbose -u "__token__" -p "${{ secrets.PYPI_API_TOKEN }}"
