@@ -20,11 +20,10 @@ jobs:
         python -m pip install -r requirements.txt
         echo "Runninhg pipeline"
         python setup.py bdist_wheel --universal
+        export VERSION=$(ls dist | grep -o '[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*')
     - uses: actions/upload-artifact@v3
-      env:
-        VERSION: $(ls dist | grep -o '[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*')
       with:
-        name: subshift-${{ env.VERSION }}
+        name: subshift-$VERSION
         path: dist/subshift*.whl
 #    - name: Publish package
 #      run: |
