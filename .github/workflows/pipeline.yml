@@ -19,7 +19,9 @@ jobs:
         echo "Building package"
         python setup.py bdist_wheel --universal
         VERSION=$(ls dist | grep -o '[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*')
+        README=$(cat README.md)
         echo "VERSION=$VERSION" >> $GITHUB_ENV
+        echo "README=$README" >> $GITHUB_ENV
     - uses: actions/upload-artifact@v3
       with:
         name: ${{ github.event.repository.name }}-${{ env.VERSION }}
@@ -33,8 +35,8 @@ jobs:
         tag_name: v${{ env.VERSION }}
         release_name: Release v${{ env.VERSION }}
         body: |
-          Changes in this Release
-          - ${{ github.ref }}
+          Changes in this Release - ${{ github.ref }}
+          ${{ env.README }}
         draft: false
         prerelease: false
 #    - name: Publish package
