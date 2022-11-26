@@ -22,7 +22,7 @@ jobs:
         README=$(cat README.md)
         echo "VERSION: $VERSION"
         echo "README: $README"
-        echo -e "VERSION=$VERSION\nREADME=$README" >> $GITHUB_ENV
+        echo -e "VERSION=$VERSION\nREADME='$README'" >> $GITHUB_ENV
     - uses: actions/upload-artifact@v3
       with:
         name: ${{ github.event.repository.name }}-${{ env.VERSION }}
