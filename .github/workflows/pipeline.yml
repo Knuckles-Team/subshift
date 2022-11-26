@@ -18,14 +18,14 @@ jobs:
       run: |
         echo "Installing dependencies"
         python -m pip install -r requirements.txt
-        echo "Runninhg pipeline"
+        echo "Building package"
         python setup.py bdist_wheel --universal
         VERSION=$(ls dist | grep -o '[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*')
         echo "VERSION=$VERSION" >> $GITHUB_ENV
     - uses: actions/upload-artifact@v3
       with:
-        name: subshift-${{ env.VERSION }}
-        path: dist/subshift*.whl
+        name: ${{ github.event.repository.name }}-${{ env.VERSION }}
+        path: dist/${{ github.event.repository.name }}*.whl
 #    - name: Publish package
 #      run: |
 #        twine upload dist/* --verbose -u "__token__" -p "${{ secrets.PYPI_API_TOKEN }}"
