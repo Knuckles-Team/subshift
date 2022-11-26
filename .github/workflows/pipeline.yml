@@ -6,7 +6,7 @@ on:
       - 'main'
 
 jobs:
-  deploy:
+  publish:
     runs-on: self-hosted
     permissions: write-all
     steps:
@@ -20,8 +20,9 @@ jobs:
         python setup.py bdist_wheel --universal
         VERSION=$(ls dist | grep -o '[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*')
         README=$(cat README.md)
-        echo "VERSION=$VERSION" >> $GITHUB_ENV
-        echo "README=$README" >> $GITHUB_ENV
+        echo "VERSION: $VERSION"
+        echo "README: $README"
+        echo -e "VERSION=$VERSION\nREADME=$README" >> $GITHUB_ENV
     - uses: actions/upload-artifact@v3
       with:
         name: ${{ github.event.repository.name }}-${{ env.VERSION }}
