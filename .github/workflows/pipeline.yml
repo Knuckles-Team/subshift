@@ -23,7 +23,7 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         name: subshift
-        path: build/subshift.tar.gz
-    - name: Publish package
-      run: |
-        twine upload dist/* --verbose -u "__token__" -p "${{ secrets.PYPI_API_TOKEN }}"
+        path: dist/subshift*.whl
+#    - name: Publish package
+#      run: |
+#        twine upload dist/* --verbose -u "__token__" -p "${{ secrets.PYPI_API_TOKEN }}"
