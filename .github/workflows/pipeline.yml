@@ -16,15 +16,9 @@ jobs:
     - name: Verify Latest Build Version
       id: verify_version
       run: |
-         ls -la 
-         echo "Fetching"
+         echo "Fetching Latest Tags"
          git fetch
-         git pull
-         echo "Getting Tag"
-         git tag
-         echo "Taggged"
          TAG=$(git tag | tail -n1)
-         popd
          REPO_NAME=${{ github.event.repository.name }}
          CURRENT_RELEASE=$(git tag | tail -n1 | sed 's/v//')     
          CURRENT_VERSION=$(cat ${REPO_NAME}/version.py | grep -o '[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*')
@@ -62,6 +56,16 @@ jobs:
         BUILD_VERSION=$(ls dist | grep -o '[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*')
         echo "BUILD VERSION: $BUILD_VERSION"
         echo -e "BUILD_VERSION=$BUILD_VERSION" >> $GITHUB_ENV
+        
+    - name: Commit Repository Changes
+      if: ${{ env.CURRENT_RELEASE == env.CURRENT_VERSION && env.CURRENT_RELEASE != '' }}
+      id: commit_repository
+      run: |
+        git config --global user.name 'GitHub Pipeline'
+        git config --global user.email 'GitHub@users.noreply.github.com'
+        git add -A
+        git commit -am "Automated Version Increment to $CURRENT_VERSION"
+        git push
         
     - name: Upload Artifact
       if: ${{ env.CURRENT_RELEASE == env.CURRENT_VERSION && env.CURRENT_RELEASE != '' }}
