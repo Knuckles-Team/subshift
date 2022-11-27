@@ -33,14 +33,14 @@ jobs:
       run: |
          version=( ${CURRENT_VERSION//./ } ) 
          echo "Starting Version: ${version}"
-         if [[ ${{ github.event.head_commit.message }} == *"patch"* ]]; then
+         if [[ "${{ github.event.head_commit.message }}" == *"patch"* ]]; then
            ((version[2]++))
            echo "Incrementing Patch Version: ${version}"
-         elif [[ ${{ github.event.head_commit.message }} == *"minor"* ]]; then
+         elif [[ "${{ github.event.head_commit.message }}" == *"minor"* ]]; then
            ((version[1]++))
            version[2]=0
            echo "Incrementing Minor Version: ${version}"
-         elif [[ ${{ github.event.head_commit.message }} == *"major"* ]]; then
+         elif [[ "${{ github.event.head_commit.message }}" == *"major"* ]]; then
            ((version[0]++))
            version[2]=0
            version[1]=0
