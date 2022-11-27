@@ -17,11 +17,12 @@ jobs:
       id: verify_version
       run: |
          ls -la 
+         echo "Fetching"
+         git fetch
+         git pull
+         echo "Getting Tag"
          git tag
-         pushd ${{ github.event.repository.name }}
-         echo "In Folder"
-         ls -la
-         git tag
+         echo "Taggged"
          TAG=$(git tag | tail -n1)
          popd
          REPO_NAME=${{ github.event.repository.name }}
