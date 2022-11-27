@@ -26,7 +26,7 @@ jobs:
          echo -e "TAG=$TAG\nCURRENT_RELEASE=$CURRENT_RELEASE\nCURRENT_VERSION=$CURRENT_VERSION" >> $GITHUB_ENV
          
     - name: Increment Version
-      if: $CURRENT_RELEASE == $CURRENT_VERSION # && contains(fromJson('["major", "minor", "patch"]'), github.event.head_commit.message)
+      if: $CURRENT_RELEASE == $CURRENT_VERSION
       id: increment_version
       run: |
          a=( ${CURRENT_VERSION//./ } ) 
