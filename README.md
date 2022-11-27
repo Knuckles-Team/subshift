@@ -1,5 +1,5 @@
 # Subshift
-*Version: 0.2.2*
+*Version: 0.3.0*
 
 A handy Python library to shift your subtitles +/- seconds so they align with your video
 
