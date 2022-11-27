@@ -50,11 +50,11 @@ jobs:
            version[2]=0
            echo "Incrementing Minor Version: ${version[@]}"
          fi         
-         CURRENT_VERSION="${version[0]}.${version[1]}.${version[2]}"
-         echo -e "Old Version: $CURRENT_RELEASE\nNew Version: $CURRENT_VERSION"
-         sed -i 's/CURRENT_VERSION=.*$/CURRENT_VERSION=$CURRENT_VERSION/' $GITHUB_ENV
-         sed -i 's/__version__ = .*$/__version__ = $CURRENT_VERSION/' $REPO_NAME/version.py
-         sed -i 's/^\*Version: [0-9][0-9]*.[0-9][0-9]*.[0-9][0-9]*\*.*$/*Version: $CURRENT_VERSION*/' README.md
+         NEW_VERSION="${version[0]}.${version[1]}.${version[2]}"
+         echo -e "Old Version: $CURRENT_RELEASE\nNew Version: $NEW_VERSION"
+         sed -i "s/CURRENT_VERSION=.*$/CURRENT_VERSION=$NEW_VERSION/" $GITHUB_ENV
+         sed -i "s/__version__ = .*$/__version__ = $NEW_VERSION/" $REPO_NAME/version.py
+         sed -i "s/^\*Version: [0-9][0-9]*.[0-9][0-9]*.[0-9][0-9]*\*.*$/*Version: $NEW_VERSION*/" README.md
      
     - name: Commit Repository Changes
       if: ${{ env.CURRENT_RELEASE == env.CURRENT_VERSION && env.CURRENT_RELEASE != '' }}
