@@ -7,4 +7,4 @@ on:
 
 jobs:
   publish:
-    uses: Knuckles-Team/pipelines/.github/workflows/python_pipeline.yml@304c5170f3f3b323c481e3a0faa5f6d5f483bfed
+    uses: Knuckles-Team/pipelines/.github/workflows/python_pipeline.yml
