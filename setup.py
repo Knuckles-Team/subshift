@@ -27,7 +27,7 @@ setup(
     license='Unlicense',
     packages=['subshift'],
     include_package_data=True,
-    install_requires=['chardet'],
+    install_requires=['chardet>=5.1.0'],
     py_modules=['subshift'],
     package_data={'subshift': ['subshift']},
     classifiers=[
