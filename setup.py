@@ -27,7 +27,7 @@ setup(
     url='https://github.com/Knuckles-Team/subsync',
     author=__author__,
     author_email='knucklessg1@gmail.com',
-    license='Unlicense',
+    license='MIT',
     packages=['subshift'],
     include_package_data=True,
     install_requires=[str(requirement.requirement) for requirement in requirements],
