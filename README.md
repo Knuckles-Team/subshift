@@ -20,7 +20,7 @@
 ![PyPI - Wheel](https://img.shields.io/pypi/wheel/subshift)
 ![PyPI - Implementation](https://img.shields.io/pypi/implementation/subshift)
 
-*Version: 0.9.0*
+*Version: 0.10.0*
 
 A handy Python library to shift your subtitles +/- seconds so they align with your video
 
