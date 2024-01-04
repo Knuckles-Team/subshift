@@ -42,7 +42,7 @@ This repository is actively maintained - Contributions are welcome!
   <summary><b>Example:</b></summary>
 
 ```bash
-python3 autoversioner.py --file English.srt --mode + --time 5
+subshift --file English.srt --mode + --time 5
 ```
 
 </details>
