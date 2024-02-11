@@ -22,7 +22,7 @@
 
 *Version: 0.10.0*
 
-A handy Python library to shift your subtitles +/- seconds so they align with your video
+A handy Python library to shift your subtitles +/- seconds, so they align with your video
 
 This repository is actively maintained - Contributions are welcome!
 
