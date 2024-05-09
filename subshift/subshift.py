@@ -10,23 +10,25 @@ import getopt
 
 
 def usage():
-    print(f"Usage: \n"
-          f"-h | --help [ See usage for script ]\n"
-          f"-f | --file [ Subtitle File ]\n"
-          f"-m | --mode [ \"+\"/\"-\" ]\n"
-          f"-t | --time [ Time in seconds to shift ]\n"
-          f"\n"
-          f"subshift --file Engrish.srt --mode + --time 5\n")
+    print(
+        "Usage: \n"
+        "-h | --help [ See usage for script ]\n"
+        "-f | --file [ Subtitle File ]\n"
+        '-m | --mode [ "+"/"-" ]\n'
+        "-t | --time [ Time in seconds to shift ]\n"
+        "\n"
+        "subshift --file Engrish.srt --mode + --time 5\n"
+    )
 
 
 def pad_time(time, seconds=False):
     padded_time = time
     if seconds:
-        padded_time = '{0:.3f}'.format(float(padded_time))
+        padded_time = "{0:.3f}".format(float(padded_time))
     if float(padded_time) >= 10:
         padded_time = str(padded_time)
     else:
-        padded_time = '0' + str(padded_time)
+        padded_time = "0" + str(padded_time)
     return padded_time
 
 
@@ -39,8 +41,13 @@ def shift_sub_time(time, shift_time=5, shift_operator="+"):
     end_seconds = re.sub(",", ".", end_seconds)
 
     # Calculate total time in seconds
-    start_time_seconds = round(((int(start_hours) * 3600) + (int(start_minutes) * 60) + float(start_seconds)), 3)
-    end_time_seconds = round(((int(end_hours) * 3600) + (int(end_minutes) * 60) + float(end_seconds)), 3)
+    start_time_seconds = round(
+        ((int(start_hours) * 3600) + (int(start_minutes) * 60) + float(start_seconds)),
+        3,
+    )
+    end_time_seconds = round(
+        ((int(end_hours) * 3600) + (int(end_minutes) * 60) + float(end_seconds)), 3
+    )
 
     # Either add or subtract based off of operator
     if shift_operator == "+":
@@ -48,7 +55,9 @@ def shift_sub_time(time, shift_time=5, shift_operator="+"):
         end_time_seconds = round(end_time_seconds + int(shift_time), 3)
     elif shift_operator == "-":
         if start_time_seconds - int(shift_time) < 0:
-            print("Cannot reduce the time anymore, the subtitle starting time will be negative...")
+            print(
+                "Cannot reduce the time anymore, the subtitle starting time will be negative..."
+            )
             sys.exit(2)
         start_time_seconds = round(start_time_seconds - int(shift_time), 3)
         end_time_seconds = round(end_time_seconds - int(shift_time), 3)
@@ -56,7 +65,9 @@ def shift_sub_time(time, shift_time=5, shift_operator="+"):
     # Convert back to hours, minutes, seconds
     start_hours = math.floor(start_time_seconds / 3600)
     start_minutes = math.floor((start_time_seconds - start_hours * 3600) / 60)
-    start_seconds = round(start_time_seconds - start_hours * 3600 - start_minutes * 60, 3)
+    start_seconds = round(
+        start_time_seconds - start_hours * 3600 - start_minutes * 60, 3
+    )
     end_hours = math.floor(end_time_seconds / 3600)
     end_minutes = math.floor((end_time_seconds - end_hours * 3600) / 60)
     end_seconds = round(end_time_seconds - end_hours * 3600 - end_minutes * 60, 3)
@@ -81,12 +92,14 @@ def shift_sub_time(time, shift_time=5, shift_operator="+"):
 def sync_time(subtitle_file, shift_time, shift_operator):
     # Detect encoding of file
     try:
-        with open(subtitle_file, 'rb') as f:
-            rawdata = b''.join([f.readline() for _ in range(0, len(f.readlines()))])
+        with open(subtitle_file, "rb") as f:
+            rawdata = b"".join([f.readline() for _ in range(0, len(f.readlines()))])
     except FileNotFoundError:
-        print("Subtitle file was not found, please verify the correct file was specified...")
+        print(
+            "Subtitle file was not found, please verify the correct file was specified..."
+        )
         sys.exit(2)
-    encoding = chardet.detect(rawdata)['encoding']
+    encoding = chardet.detect(rawdata)["encoding"]
     if encoding == "None":
         encoding = "utf-8-bom"
 
@@ -96,9 +109,13 @@ def sync_time(subtitle_file, shift_time, shift_operator):
 
     # Iterate through all subtitle lines
     for line_index in range(0, len(lines)):
-        if re.match(r"[0-9][0-9]:[0-9][0-9]:[0-9][0-9],[0-9][0-9][0-9]", lines[line_index]):
+        if re.match(
+            r"[0-9][0-9]:[0-9][0-9]:[0-9][0-9],[0-9][0-9][0-9]", lines[line_index]
+        ):
             # Acquire new time fileline
-            lines[line_index] = str(shift_sub_time(lines[line_index], shift_time, shift_operator) + "\n")
+            lines[line_index] = str(
+                shift_sub_time(lines[line_index], shift_time, shift_operator) + "\n"
+            )
 
     # Rewrite back to the same subtitle file and same encoding
     with codecs.open(subtitle_file, "w", encoding=encoding) as file:
