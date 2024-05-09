@@ -21,7 +21,7 @@ def usage():
     )
 
 
-def pad_time(time, seconds=False):
+def pad_time(time, seconds=False) -> str:
     padded_time = time
     if seconds:
         padded_time = "{0:.3f}".format(float(padded_time))
@@ -32,7 +32,7 @@ def pad_time(time, seconds=False):
     return padded_time
 
 
-def shift_sub_time(time, shift_time=5, shift_operator="+"):
+def shift_sub_time(time, shift_time=5, shift_operator="+") -> str:
     # Parse time fields
     start_time, end_time = time.split(" --> ")
     start_hours, start_minutes, start_seconds = start_time.split(":")
